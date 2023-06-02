@@ -50,35 +50,51 @@
         </div>
     </div>
 </nav>
-<div>
-    <div>
-        <input id="name" type="text" name="name" placeholder="Имя">
+<div class="container-fluid w-50 mx-auto" style="margin-top: 5%; width: 30% !important;">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="name" type="text" class="form-control" name="name" placeholder="Имя">
+        </div>
     </div>
-    <div>
-        <input id="surname" type="text" name="surname" placeholder="Фамилия">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="surname" type="text" class="form-control" name="surname" placeholder="Фамилия">
+        </div>
     </div>
-    <div>
-        <input id="patronymic" type="text" name="patronymic" placeholder="Отчество">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="patronymic" type="text" class="form-control" name="patronymic" placeholder="Отчество">
+        </div>
     </div>
-    <div>
-        <input id="login" type="text" name="login" placeholder="Логин">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="login" type="text" class="form-control" name="login" placeholder="Логин">
+        </div>
     </div>
-    <div>
-        <input id="email" type="email" name="email" placeholder="Эл.почта">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="email" type="email" class="form-control" name="email" placeholder="Эл.почта">
+        </div>
     </div>
-    <div>
-        <input id="password" type="password" name="password" placeholder="Пароль">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="password" type="password" class="form-control" name="password" placeholder="Пароль">
+        </div>
     </div>
-    <div>
-        <input id="password_repeat" type="password" name="password_repeat" placeholder="Повтор пароля">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="password_repeat" type="password" class="form-control" name="password_repeat" placeholder="Повтор пароля">
+        </div>
     </div>
-    <div>
-        <input id="rules" type="checkbox" name="rules">
-        <label for="rules">Согласен с правилами регистрации</label>
+    <div class="row">
+        <div class="col mb-3" style="margin-left: 10%">
+            <input id="rules" class="form-check-input" type="checkbox" name="rules">
+            <label class="form-check-label" for="rules">Согласен с правилами регистрации</label>
+        </div>
     </div>
-    <div>
-        <div>
-            <button type="submit" onclick="registrationQuery('{{ csrf_token() }}')">Регистрация</button>
+    <div class="row">
+        <div class="col mb-3">
+            <input type="submit" style="margin-left: 35%" class="btn btn-primary" onclick="registrationQuery('{{ csrf_token() }}')" value="Регистрация">
         </div>
     </div>
 </div>

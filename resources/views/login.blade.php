@@ -50,22 +50,20 @@
         </div>
     </div>
 </nav>
-<div>
-    <div>
-        <label for="login">Логин</label>
-        <div>
-            <input id="login" type="login" name="login">
+<div class="container-fluid w-50 mx-auto" style="margin-top: 15%; width: 30% !important;">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="login" type="text" class="form-control" name="login" placeholder="Логин">
         </div>
     </div>
-    <div>
-        <label for="password">Пароль</label>
-        <div>
-            <input id="password" type="password" name="password">
+    <div class="row">
+        <div class="col mb-3">
+            <input id="password" type="password" class="form-control" name="password" placeholder="Пароль">
         </div>
     </div>
-    <div>
-        <div>
-            <button type="submit" onclick="loginQuery('{{ csrf_token() }}')">Войти</button>
+    <div class="row">
+        <div class="col mb-3">
+            <input type="submit" style="margin-left: 40%" class="btn btn-primary" onclick="loginQuery('{{ csrf_token() }}')" value="Войти">
         </div>
     </div>
 </div>
