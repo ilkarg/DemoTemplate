@@ -1,45 +1,77 @@
-<html>
-    <head>
-        <title>Авторизация</title>
-    </head>
-    <body>
-        <div>
-            <div>
-                <label for="login">Login</label>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                <div>
-                    <input id="login" type="login" name="login" value="{{ old('login') }}" required autofocus>
+    <title>Вкусняшка - Вход</title>
 
-                    @error('login')
-                    <span role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                    @enderror
-                </div>
-            </div>
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+</head>
+<body class="antialiased">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <img src="{{ asset('/assets/logo.png') }}" alt="" width="30" height="24" class="mt-1 d-inline-block align-text-top">
+        <a class="navbar-brand">Вкусняшка</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">О нас</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/menu">Меню</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/contacts">Где нас найти?</a>
+                </li>
+                @if (Route::has('login'))
+                    @auth
+                        <li class="nav-item">
+                            <a href="javascript:logoutQuery('{{ csrf_token() }}')" class="nav-link">Выход</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="nav-link active">Вход</a>
+                        </li>
 
-            <div>
-                <label for="password">Password</label>
-
-                <div>
-                    <input id="password" type="password" name="password" required>
-
-                    @error('password')
-                    <span role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <button type="submit" onclick="loginQuery('{{ csrf_token() }}')">Войти</button>
-                </div>
-            </div>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}" class="nav-link">Регистрация</a>
+                            </li>
+                        @endif
+                    @endauth
+                @endif
+            </ul>
         </div>
+    </div>
+</nav>
+<div>
+    <div>
+        <label for="login">Логин</label>
+        <div>
+            <input id="login" type="login" name="login">
+        </div>
+    </div>
+    <div>
+        <label for="password">Пароль</label>
+        <div>
+            <input id="password" type="password" name="password">
+        </div>
+    </div>
+    <div>
+        <div>
+            <button type="submit" onclick="loginQuery('{{ csrf_token() }}')">Войти</button>
+        </div>
+    </div>
+</div>
 
-        <script src="{{ asset('/js/jquery.js') }}"></script>
-        <script src="{{ asset('/js/query.js') }}"></script>
-    </body>
+<script src="{{ asset('/js/jquery.js') }}"></script>
+<script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('/js/query.js') }}"></script>
+</body>
 </html>

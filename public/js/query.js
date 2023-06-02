@@ -17,25 +17,30 @@ function loginQuery(csrf_token) {
         },
         error: (response) => {
             response = JSON.parse(response.responseText);
-            alert(response.errors[Object.keys(response.errors)[0]][0]);
+            if (response.errors) {
+                alert(response.errors[Object.keys(response.errors)[0]][0]);
+            } else if (response.response) {
+                alert(response.response);
+            }
         }
     });
 }
 
 function registrationQuery(csrf_token) {
-    if ($('#password').val() !== $('#password-confirm').val()) {
-        alert('Пароль и повтор пароля не совпадают');
-        return;
-    }
-
     $.ajax({
         url: '/api/v1/registration',
         method: 'POST',
         dataType: 'json',
         data: {
             _token: csrf_token,
+            name: $('#name').val(),
+            surname: $('#surname').val(),
+            patronymic: $('#patronymic').val(),
             login: $('#login').val(),
-            password: $('#password').val()
+            email: $('#email').val(),
+            password: $('#password').val(),
+            password_repeat: $('#password_repeat').val(),
+            rules: $('#rules').is(':checked')
         },
         success: (response) => {
             if (response.response === 'Аккаунт успешно зарегистрирован') {
@@ -46,7 +51,11 @@ function registrationQuery(csrf_token) {
         },
         error: (response) => {
             response = JSON.parse(response.responseText);
-            alert(response.errors[Object.keys(response.errors)[0]][0]);
+            if (response.errors) {
+                alert(response.errors[Object.keys(response.errors)[0]][0]);
+            } else if (response.response) {
+                alert(response.response);
+            }
         }
     });
 }

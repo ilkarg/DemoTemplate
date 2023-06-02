@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Вкусняшка - Регистрация</title>
+    <title>Вкусняшка - Меню</title>
 
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
@@ -24,7 +24,7 @@
                     <a class="nav-link" aria-current="page" href="/">О нас</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/menu">Меню</a>
+                    <a class="nav-link active" aria-current="page" href="/menu">Меню</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/contacts">Где нас найти?</a>
@@ -41,7 +41,7 @@
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a href="{{ route('register') }}" class="nav-link active">Регистрация</a>
+                                <a href="{{ route('register') }}" class="nav-link">Регистрация</a>
                             </li>
                         @endif
                     @endauth
@@ -50,38 +50,6 @@
         </div>
     </div>
 </nav>
-<div>
-    <div>
-        <input id="name" type="text" name="name" placeholder="Имя">
-    </div>
-    <div>
-        <input id="surname" type="text" name="surname" placeholder="Фамилия">
-    </div>
-    <div>
-        <input id="patronymic" type="text" name="patronymic" placeholder="Отчество">
-    </div>
-    <div>
-        <input id="login" type="text" name="login" placeholder="Логин">
-    </div>
-    <div>
-        <input id="email" type="email" name="email" placeholder="Эл.почта">
-    </div>
-    <div>
-        <input id="password" type="password" name="password" placeholder="Пароль">
-    </div>
-    <div>
-        <input id="password_repeat" type="password" name="password_repeat" placeholder="Повтор пароля">
-    </div>
-    <div>
-        <input id="rules" type="checkbox" name="rules">
-        <label for="rules">Согласен с правилами регистрации</label>
-    </div>
-    <div>
-        <div>
-            <button type="submit" onclick="registrationQuery('{{ csrf_token() }}')">Регистрация</button>
-        </div>
-    </div>
-</div>
 
 <script src="{{ asset('/js/jquery.js') }}"></script>
 <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>

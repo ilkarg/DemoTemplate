@@ -15,7 +15,15 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('about');
+});
+
+Route::get('/menu', function () {
+    return view('menu');
+});
+
+Route::get('/contacts', function () {
+    return view('contacts');
 });
 
 Route::middleware('guest')->group(function () {
@@ -26,4 +34,9 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', function () {
         return view('registration');
     })->name('register');
+
+    Route::post('/api/v1/login', [AuthController::class, 'login']);
+    Route::post('/api/v1/registration', [AuthController::class, 'registration']);
 });
+
+Route::post('/api/v1/logout', [AuthController::class, 'logout'])->middleware('auth');
