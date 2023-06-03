@@ -176,3 +176,51 @@ function logoutQuery(csrf_token) {
         }
     });
 }
+
+function getFoods() {
+    $.ajax({
+        url: '/api/v1/getFoods',
+        method: 'GET',
+        dataType: 'json',
+        success: (response) => {
+            response.map((food) => createFoodCard(food.name, food.image));
+        }
+    });
+}
+
+function createFoodCard(name, image) {
+    let foodDiv = document.createElement('div');
+    foodDiv.classList.add('col-lg-4');
+
+    let cardDiv = document.createElement('div');
+    cardDiv.classList.add('card', 'mt-2', 'text-center');
+    cardDiv.style.width = '13.5rem';
+
+    let foodImg = document.createElement('img');
+    foodImg.classList.add('card-img-top');
+    foodImg.width = 160;
+    foodImg.height = 160;
+    foodImg.alt = name;
+    foodImg.src = image;
+
+    let foodBodyDiv = document.createElement('div');
+    foodBodyDiv.classList.add('card-body');
+
+    let foodNameH = document.createElement('h5');
+    foodNameH.classList.add('card-title');
+    foodNameH.innerText = name;
+
+    let foodAboutA = document.createElement('a');
+    foodAboutA.href = '#';
+    foodAboutA.classList.add('btn', 'btn-primary', 'food-about-link');
+    foodAboutA.innerText = 'Подробнее';
+
+    foodBodyDiv.appendChild(foodNameH);
+    foodBodyDiv.appendChild(foodAboutA);
+
+    cardDiv.appendChild(foodImg);
+    cardDiv.appendChild(foodBodyDiv);
+
+    foodDiv.appendChild(cardDiv);
+    $('#foods').append(foodDiv);
+}

@@ -124,3 +124,7 @@
 .carousel-caption {
     text-shadow: 1px 1px black;
 }
+
+.food-about-link {
+    width: 110px !important;
+}

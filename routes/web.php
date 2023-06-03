@@ -42,6 +42,6 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/api/v1/logout', [AuthController::class, 'logout']);
-
-    Route::get('/api/v1/getFoods', [FoodController::class, 'getFoods']);
 });
+
+Route::get('/api/v1/getFoods', [FoodController::class, 'getFoods']);
