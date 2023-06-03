@@ -1,4 +1,13 @@
+function isNull(value) {
+    return value === null || value.trim() === "";
+}
+
 function loginQuery(csrf_token) {
+    if (isNull($('#login').val()) || isNull($('#password').val())) {
+        alert('Все поля должны быть заполнены');
+        return;
+    }
+
     $.ajax({
         url: '/api/v1/login',
         method: 'POST',
@@ -27,6 +36,18 @@ function loginQuery(csrf_token) {
 }
 
 function registrationQuery(csrf_token) {
+    if (isNull($('#name').val()) || isNull($('#surname').val()) || isNull($('#patronymic').val()) ||
+    isNull($('#login').val()) || isNull($('#email').val()) || isNull($('#password').val()) ||
+    isNull($('#password_repeat').val())) {
+        alert('Все поля должны быть заполнены');
+        return;
+    }
+
+    if (!$('#rules').is(':checked')) {
+        alert('Необходимо согласиться с правилами');
+        return;
+    }
+
     $.ajax({
         url: '/api/v1/registration',
         method: 'POST',
