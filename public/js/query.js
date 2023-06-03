@@ -1,8 +1,4 @@
-function isNull(value) {
-    return value === null || value.trim() === "";
-}
-
-function loginQuery(csrf_token) {
+const loginQuery = (csrf_token) => {
     $('#login').removeClass('invalid-input');
     $('#login-div').addClass('login-input-border');
     $('#password').removeClass('invalid-input');
@@ -71,7 +67,7 @@ function loginQuery(csrf_token) {
     });
 }
 
-function registrationQuery(csrf_token) {
+const registrationQuery = (csrf_token) => {
     $('#name').removeClass('invalid-input');
     $('#name-div').addClass('login-input-border');
     $('#surname').removeClass('invalid-input');
@@ -161,7 +157,7 @@ function registrationQuery(csrf_token) {
     });
 }
 
-function logoutQuery(csrf_token) {
+const logoutQuery = (csrf_token) => {
     $.ajax({
         url: '/api/v1/logout',
         method: 'POST',
@@ -177,7 +173,7 @@ function logoutQuery(csrf_token) {
     });
 }
 
-function getFoods() {
+const getFoodsQuery = () => {
     $.ajax({
         url: '/api/v1/getFoods',
         method: 'GET',
@@ -188,39 +184,16 @@ function getFoods() {
     });
 }
 
-function createFoodCard(name, image) {
-    let foodDiv = document.createElement('div');
-    foodDiv.classList.add('col-lg-4');
-
-    let cardDiv = document.createElement('div');
-    cardDiv.classList.add('card', 'mt-2', 'text-center');
-    cardDiv.style.width = '13.5rem';
-
-    let foodImg = document.createElement('img');
-    foodImg.classList.add('card-img-top');
-    foodImg.width = 160;
-    foodImg.height = 160;
-    foodImg.alt = name;
-    foodImg.src = image;
-
-    let foodBodyDiv = document.createElement('div');
-    foodBodyDiv.classList.add('card-body');
-
-    let foodNameH = document.createElement('h5');
-    foodNameH.classList.add('card-title');
-    foodNameH.innerText = name;
-
-    let foodAboutA = document.createElement('a');
-    foodAboutA.href = '#';
-    foodAboutA.classList.add('btn', 'btn-primary', 'food-about-link');
-    foodAboutA.innerText = 'Подробнее';
-
-    foodBodyDiv.appendChild(foodNameH);
-    foodBodyDiv.appendChild(foodAboutA);
-
-    cardDiv.appendChild(foodImg);
-    cardDiv.appendChild(foodBodyDiv);
-
-    foodDiv.appendChild(cardDiv);
-    $('#foods').append(foodDiv);
+const getSliderFoodsQuery = () => {
+    $.ajax({
+        url: '/api/v1/getSliderFoods',
+        method: 'GET',
+        dataType: 'json',
+        success: (response) => {
+            response.reverse().map((food) => createSliderFood(food.name, food.image));
+            if (response.length > 0) {
+                $('.about-slider').removeClass('hidden');
+            }
+        }
+    });
 }

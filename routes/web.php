@@ -45,3 +45,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/api/v1/getFoods', [FoodController::class, 'getFoods']);
+Route::get('/api/v1/getSliderFoods', [FoodController::class, 'getSliderFoods']);

@@ -62,10 +62,12 @@
 <script src="{{ asset('/js/jquery.js') }}"></script>
 <!--Bootstrap JS-->
 <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+<!--Script JS-->
+<script src="{{ asset('/js/script.js') }}"></script>
 <!--Query JS-->
 <script src="{{ asset('/js/query.js') }}"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => getFoods());
+    document.addEventListener('DOMContentLoaded', () => getFoodsQuery());
 </script>
 </body>
 </html>

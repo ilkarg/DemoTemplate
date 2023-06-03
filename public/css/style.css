@@ -128,3 +128,7 @@
 .food-about-link {
     width: 110px !important;
 }
+
+.hidden {
+    visibility: hidden;
+}
