@@ -36,9 +36,8 @@ function loginQuery(csrf_token) {
 }
 
 function registrationQuery(csrf_token) {
-    if (isNull($('#name').val()) || isNull($('#surname').val()) || isNull($('#patronymic').val()) ||
-    isNull($('#login').val()) || isNull($('#email').val()) || isNull($('#password').val()) ||
-    isNull($('#password_repeat').val())) {
+    if (isNull($('#name').val()) || isNull($('#surname').val()) || isNull($('#login').val()) ||
+        isNull($('#email').val()) || isNull($('#password').val()) || isNull($('#password_repeat').val())) {
         alert('Все поля должны быть заполнены');
         return;
     }
