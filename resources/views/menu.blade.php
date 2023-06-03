@@ -54,6 +54,55 @@
         </div>
     </div>
 </nav>
+<div class="mt-3 container-fluid w-50 mx-auto">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card mt-2 text-center" style="width: 13.5rem">
+                <img class="card-img-top" width="160" height="160" src="{{ asset('/assets/food1.jpg') }}" alt="Food 1">
+                <div class="card-body">
+                    <h5 class="card-title">Блюдо 1</h5>
+                    <a href="#" class="btn btn-primary" style="width: 110px !important;">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mt-2 text-center" style="width: 13.5rem">
+                <img class="card-img-top" width="160" height="160" src="{{ asset('/assets/food2.jpg') }}" alt="Food 2">
+                <div class="card-body">
+                    <h5 class="card-title">Блюдо 2</h5>
+                    <a href="#" class="btn btn-primary" style="width: 110px !important;">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mt-2 text-center" style="width: 13.5rem">
+                <img class="card-img-top" width="160" height="160" src="{{ asset('/assets/food3.jpg') }}" alt="Food 3">
+                <div class="card-body">
+                    <h5 class="card-title">Блюдо 3</h5>
+                    <a href="#" class="btn btn-primary" style="width: 110px !important;">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mt-2 text-center" style="width: 13.5rem">
+                <img class="card-img-top" width="160" height="160" src="{{ asset('/assets/food4.jpg') }}" alt="Food 4">
+                <div class="card-body">
+                    <h5 class="card-title">Блюдо 4</h5>
+                    <a href="#" class="btn btn-primary" style="width: 110px !important;">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mt-2 text-center" style="width: 13.5rem">
+                <img class="card-img-top" width="160" height="160" src="{{ asset('/assets/food5.jpg') }}" alt="Food 5">
+                <div class="card-body">
+                    <h5 class="card-title">Блюдо 5</h5>
+                    <a href="#" class="btn btn-primary" style="width: 110px !important;">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--JQuery JS-->
 <script src="{{ asset('/js/jquery.js') }}"></script>
