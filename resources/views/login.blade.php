@@ -55,13 +55,15 @@
     </div>
 </nav>
 <div class="container">
+    <div class="row mt-4" id="loginError">
+    </div>
     <div class="row">
         <div class="form-login">
-            <div class="login-input">
+            <div id="login-div" class="login-input login-input-border">
                 <label class="title-login" for="login">Логин</label>
                 <input name="login" type="text" id="login" placeholder="Логин">
             </div>
-            <div class="login-input">
+            <div id="password-div" class="login-input login-input-border">
                 <label class="title-password" for="password">Пароль</label>
                 <input name="password" type="password" id="password" placeholder="Пароль">
             </div>

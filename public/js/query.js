@@ -3,9 +3,27 @@ function isNull(value) {
 }
 
 function loginQuery(csrf_token) {
+    $('#login').removeClass('invalid-input');
+    $('#login-div').addClass('login-input-border');
+    $('#password').removeClass('invalid-input');
+    $('#password-div').addClass('login-input-border');
+
+    let errorDiv = document.createElement('div');
+    errorDiv.classList.add('alert', 'alert-danger');
+    errorDiv.setAttribute('role', 'alert');
+    let errorsList = document.createElement('ul');
+    errorsList.id = 'errorsList';
+
+    if ($('#loginError>.alert').length) {
+        $('.alert').remove();
+    }
+
     if (isNull($('#login').val()) || isNull($('#password').val())) {
-        alert('Все поля должны быть заполнены');
-        return;
+        let el = document.createElement('li');
+        el.innerText = 'Все поля должны быть заполнены';
+        errorsList.append(el);
+        errorDiv.append(errorsList);
+        $('#loginError').append(errorDiv);
     }
 
     $.ajax({
@@ -20,30 +38,81 @@ function loginQuery(csrf_token) {
         success: (response) => {
             if (response.response === 'Вы успешно вошли в аккаунт') {
                 window.location.href = '/';
-            } else {
-                alert(response.response);
             }
         },
         error: (response) => {
             response = JSON.parse(response.responseText);
             if (response.errors) {
-                alert(response.errors[Object.keys(response.errors)[0]][0]);
+                Object.keys(response.errors).map((key) => {
+                    let el = document.createElement('li');
+                    el.innerText = `${key}: ${response.errors[key]}`;
+                    $(`#${key}`).addClass('invalid-input');
+                    $(`#${key}-div`).removeClass('login-input-border');
+                    errorsList.append(el);
+                });
             } else if (response.response) {
-                alert(response.response);
+                let el = document.createElement('li');
+                el.innerText = `${response.response}`;
+                errorsList.append(el);
+
+                if (response.response === "Неверные логин или пароль") {
+                    $('#login-div').removeClass('login-input-border');
+                    $('#password-div').removeClass('login-input-border');
+
+                    $('#login').addClass('invalid-input');
+                    $('#password').addClass('invalid-input');
+                }
             }
+
+            errorDiv.append(errorsList);
+            $('#loginError').append(errorDiv);
+            window.scrollTo(0, 0);
         }
     });
 }
 
 function registrationQuery(csrf_token) {
+    $('#name').removeClass('invalid-input');
+    $('#name-div').addClass('login-input-border');
+    $('#surname').removeClass('invalid-input');
+    $('#surname-div').addClass('login-input-border');
+    $('#patronymic').removeClass('invalid-input');
+    $('#patronymic-div').addClass('login-input-border');
+    $('#login').removeClass('invalid-input');
+    $('#login-div').addClass('login-input-border');
+    $('#email').removeClass('invalid-input');
+    $('#email-div').addClass('login-input-border');
+    $('#password').removeClass('invalid-input');
+    $('#password-div').addClass('login-input-border');
+    $('#password_repeat').removeClass('invalid-input');
+    $('#password_repeat-div').addClass('login-input-border');
+
+    let errorDiv = document.createElement('div');
+    errorDiv.classList.add('alert', 'alert-danger');
+    errorDiv.setAttribute('role', 'alert');
+    let errorsList = document.createElement('ul');
+    errorsList.id = 'errorsList';
+
+    if ($('#registerError>.alert').length) {
+        $('.alert').remove();
+    }
+
     if (isNull($('#name').val()) || isNull($('#surname').val()) || isNull($('#login').val()) ||
         isNull($('#email').val()) || isNull($('#password').val()) || isNull($('#password_repeat').val())) {
-        alert('Все поля должны быть заполнены');
+        let el = document.createElement('li');
+        el.innerText = 'Все поля должны быть заполнены';
+        errorsList.append(el);
+        errorDiv.append(errorsList);
+        $('#registerError').append(errorDiv);
         return;
     }
 
     if (!$('#rules').is(':checked')) {
-        alert('Необходимо согласиться с правилами');
+        let el = document.createElement('li');
+        el.innerText = 'Необходимо согласиться с правилами';
+        errorsList.append(el);
+        errorDiv.append(errorsList);
+        $('#registerError').append(errorDiv);
         return;
     }
 
@@ -65,17 +134,29 @@ function registrationQuery(csrf_token) {
         success: (response) => {
             if (response.response === 'Аккаунт успешно зарегистрирован') {
                 window.location.href = '/';
-            } else {
-                alert(response.response);
             }
         },
         error: (response) => {
             response = JSON.parse(response.responseText);
+
             if (response.errors) {
-                alert(response.errors[Object.keys(response.errors)[0]][0]);
+                Object.keys(response.errors).map((key) => {
+                    let el = document.createElement('li');
+                    el.innerText = `${key}: ${response.errors[key]}`;
+                    $(`#${key}`).addClass('invalid-input');
+                    $(`#${key}-div`).removeClass('login-input-border');
+                    errorsList.append(el);
+                });
+
             } else if (response.response) {
-                alert(response.response);
+                let el = document.createElement('li');
+                el.innerText = `${response.response}`;
+                errorsList.append(el);
             }
+
+            errorDiv.append(errorsList);
+            $('#registerError').append(errorDiv);
+            window.scrollTo(0, 0);
         }
     });
 }

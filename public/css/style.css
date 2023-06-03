@@ -9,15 +9,9 @@
 	max-width: 350px !important;
 	width: 100%;
 	height: auto;
-	margin: 0 auto;
+	margin: -30px auto;
 	padding: 30px;
 	border-radius: 8px;
-}
-
-.form-login h1 {
-	color: #236af7;
-	font-size: 30px;
-	margin: 20px 0;
 }
 
 .login-input {
@@ -37,7 +31,6 @@
 	font-size: 16px;
 	margin-bottom: 10px;
 	width: 100%;
-	border: 1px solid #236af7 !important;
 	border: none;
 	height: 40px;
 	outline: none;
@@ -45,6 +38,10 @@
 	font-size: 16px;
 	transition: .3s ease;
 	border-radius: 8px;
+}
+
+.login-input-border input {
+    border: 1px solid black !important;
 }
 
 .login-input input::placeholder {
@@ -86,4 +83,26 @@
 
 .checkbox {
 	margin-bottom: 5%;
+}
+
+.btn {
+    background-color: #f0f0f0;
+    border-color: #f0f0f0;
+    color: black;
+    transition: .25s ease;
+}
+
+.btn:hover, .btn:focus {
+    background-color: #A8A8A8;
+    border-color: #A8A8A8;
+    color: black;
+    transition: .25s ease;
+}
+
+.btn, .btn:hover, .btn:focus, .btn:visited, .btn:active {
+    box-shadow: none !important;
+}
+
+.invalid-input {
+    border: 1px solid red !important;
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -13,11 +12,11 @@ class AuthController extends Controller
 {
     public function login(Request $request) {
         $credentials = $request->validate([
-            'login' => 'required',
+            'login' => 'required|regex:/^.+[A-Za-z0-9\-].+$/i',
             'password' => 'required|min:6|max:15'
         ]);
 
-        $user = User::whereRaw('BINARY login = ?', [$credentials['login']])->first();
+        $user = User::whereRaw("BINARY login = ?", [$credentials['login']])->first();
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
             Auth::login($user);
@@ -43,10 +42,6 @@ class AuthController extends Controller
             'password_repeat' => [
                 'required',
                 Rule::in([$request->input('password')])
-            ],
-            'rules' => [
-                'required',
-                Rule::in(['true'])
             ]
         ]);
 

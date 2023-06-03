@@ -55,35 +55,37 @@
     </div>
 </nav>
 <div class="container">
+    <div class="row mt-4" id="registerError">
+    </div>
     <div class="row">
         <div class="form-login">
-            <div class="login-input">
+            <div id="name-div" class="login-input login-input-border">
                 <label class="title-login" for="name">Имя</label>
                 <input id="name" type="text" name="name" placeholder="Имя">
             </div>
-            <div class="login-input">
+            <div id="surname-div" class="login-input login-input-border">
                 <label class="title-login" for="surname">Фамилия</label>
                 <input id="surname" type="text" name="surname" placeholder="Фамилия">
             </div>
-            <div class="login-input">
+            <div id="patronymic-div" class="login-input login-input-border">
                 <label class="title-login" for="patronymic">Отчество</label>
                 <input id="patronymic" type="text" name="patronymic" placeholder="Отчество">
             </div>
-            <div class="login-input">
+            <div id="login-div" class="login-input login-input-border">
                 <label class="title-login" for="login">Логин</label>
                 <input id="login" type="text" name="login" placeholder="Логин">
             </div>
-            <div class="login-input">
+            <div id="email-div" class="login-input login-input-border">
                 <label class="title-login" for="email">Эл.почта</label>
                 <input id="email" type="text" name="email" placeholder="Эл.почта">
             </div>
-            <div class="login-input">
+            <div id="password-div" class="login-input login-input-border">
                 <label class="title-password" for="password">Пароль</label>
                 <input name="password" type="password" id="password" placeholder="Пароль">
             </div>
-            <div class="login-input">
-                <label class="title-password" for="repeatPassword">Повторите пароль</label>
-                <input name="repeatPassword" type="password" id="repeatPassword" placeholder="Повторите пароль">
+            <div id="password_repeat-div" class="login-input login-input-border">
+                <label class="title-password" for="password_repeat">Повторите пароль</label>
+                <input name="password_repeat" type="password" id="password_repeat" placeholder="Повторите пароль">
             </div>
             <div class="checkbox">
                 <input id="rules" class="form-check-input" type="checkbox" name="rules">
