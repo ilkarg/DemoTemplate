@@ -106,3 +106,21 @@
 .invalid-input {
     border: 1px solid red !important;
 }
+
+.slogan {
+    margin-top: .2%;
+    margin-left: .5%;
+}
+
+.about-slogan {
+    width: 500px;
+}
+
+.about-slider {
+    width: 50%;
+    height: 50%;
+}
+
+.carousel-caption {
+    text-shadow: 1px 1px black;
+}

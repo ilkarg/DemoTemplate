@@ -58,7 +58,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2290.0513441654916!2d73.40020487614369!3d54.97219875184468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43aafde0c7512c3d%3A0x7d6bf4023be0dfe4!2z0JLQutGD0YHQvdGP0YjQutCwLCDQkdCw0L3QutC10YLQvdGL0Lkg0JfQsNC7IC0g0LfQsNC7INC90LUg0YHRg9GJ0LXRgdGC0LLRg9C10YI!5e0!3m2!1sru!2sru!4v1685797605524!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div style="width: 600px"><iframe width="600" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=%D1%83%D0%BB.%20%D0%9C%D0%B0%D1%8F%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE,%2081,%20%D0%9E%D0%BC%D1%81%D0%BA,%20%D0%9E%D0%BC%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB.,%20644010+(%D0%92%D0%BA%D1%83%D1%81%D0%BD%D1%8F%D1%88%D0%BA%D0%B0)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">area maps</a></iframe></div>
         </div>
         <div class="col">
             <div class="card" style="width: 22rem;">
