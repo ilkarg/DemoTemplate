@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Вкусняшка - Меню</title>
 
+    <!--Bootstrap CSS-->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <!--Style CSS-->
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <!--Site Icon-->
+    <link rel="icon" type="image/png" href="{{ asset('/assets/logo.png') }}">
 </head>
 <body class="antialiased">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -51,8 +55,11 @@
     </div>
 </nav>
 
+<!--JQuery JS-->
 <script src="{{ asset('/js/jquery.js') }}"></script>
+<!--Bootstrap JS-->
 <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+<!--Query JS-->
 <script src="{{ asset('/js/query.js') }}"></script>
 </body>
 </html>

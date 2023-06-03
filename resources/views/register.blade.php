@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Вкусняшка - Регистрация</title>
 
+    <!--Bootstrap CSS-->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <!--Style CSS-->
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <!--Site Icon-->
+    <link rel="icon" type="image/png" href="{{ asset('/assets/logo.png') }}">
 </head>
 <body class="antialiased">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,57 +54,53 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid w-50 mx-auto" style="margin-top: 5%; width: 30% !important;">
+<div class="container">
     <div class="row">
-        <div class="col mb-3">
-            <input id="name" type="text" class="form-control" name="name" placeholder="Имя">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input id="surname" type="text" class="form-control" name="surname" placeholder="Фамилия">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input id="patronymic" type="text" class="form-control" name="patronymic" placeholder="Отчество">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input id="login" type="text" class="form-control" name="login" placeholder="Логин">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input id="email" type="email" class="form-control" name="email" placeholder="Эл.почта">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input id="password" type="password" class="form-control" name="password" placeholder="Пароль">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input id="password_repeat" type="password" class="form-control" name="password_repeat" placeholder="Повтор пароля">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3" style="margin-left: 10%">
-            <input id="rules" class="form-check-input" type="checkbox" name="rules">
-            <label class="form-check-label" for="rules">Согласен с правилами регистрации</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input type="submit" style="margin-left: 35%" class="btn btn-primary" onclick="registrationQuery('{{ csrf_token() }}')" value="Регистрация">
+        <div class="form-login">
+            <div class="login-input">
+                <label class="title-login" for="name">Имя</label>
+                <input id="name" type="text" name="name" placeholder="Имя">
+            </div>
+            <div class="login-input">
+                <label class="title-login" for="surname">Фамилия</label>
+                <input id="surname" type="text" name="surname" placeholder="Фамилия">
+            </div>
+            <div class="login-input">
+                <label class="title-login" for="patronymic">Отчество</label>
+                <input id="patronymic" type="text" name="patronymic" placeholder="Отчество">
+            </div>
+            <div class="login-input">
+                <label class="title-login" for="login">Логин</label>
+                <input id="login" type="text" name="login" placeholder="Логин">
+            </div>
+            <div class="login-input">
+                <label class="title-login" for="email">Эл.почта</label>
+                <input id="email" type="text" name="email" placeholder="Эл.почта">
+            </div>
+            <div class="login-input">
+                <label class="title-password" for="password">Пароль</label>
+                <input name="password" type="password" id="password" placeholder="Пароль">
+            </div>
+            <div class="login-input">
+                <label class="title-password" for="repeatPassword">Повторите пароль</label>
+                <input name="repeatPassword" type="password" id="repeatPassword" placeholder="Повторите пароль">
+            </div>
+            <div class="checkbox">
+                <input id="rules" class="form-check-input" type="checkbox" name="rules">
+                <label for="rules">Согласен с правилами регистрации</label>
+            </div>
+            <div class="btn-login text-center">
+                <input type="submit" class="btn btn-primary" onclick="registrationQuery('{{ csrf_token() }}')" value="Регистрация">
+            </div>
         </div>
     </div>
 </div>
 
+<!--JQuery JS-->
 <script src="{{ asset('/js/jquery.js') }}"></script>
+<!--Bootstrap JS-->
 <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+<!--Query JS-->
 <script src="{{ asset('/js/query.js') }}"></script>
 </body>
 </html>

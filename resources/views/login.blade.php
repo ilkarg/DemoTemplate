@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Вкусняшка - Вход</title>
 
+    <!--Bootstrap CSS-->
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <!--Style CSS-->
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <!--Site Icon-->
+    <link rel="icon" type="image/png" href="{{ asset('/assets/logo.png') }}">
 </head>
 <body class="antialiased">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,26 +54,28 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid w-50 mx-auto" style="margin-top: 15%; width: 30% !important;">
+<div class="container">
     <div class="row">
-        <div class="col mb-3">
-            <input id="login" type="text" class="form-control" name="login" placeholder="Логин">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input id="password" type="password" class="form-control" name="password" placeholder="Пароль">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col mb-3">
-            <input type="submit" style="margin-left: 40%" class="btn btn-primary" onclick="loginQuery('{{ csrf_token() }}')" value="Войти">
+        <div class="form-login">
+            <div class="login-input">
+                <label class="title-login" for="login">Логин</label>
+                <input name="login" type="text" id="login" placeholder="Логин">
+            </div>
+            <div class="login-input">
+                <label class="title-password" for="password">Пароль</label>
+                <input name="password" type="password" id="password" placeholder="Пароль">
+            </div>
+            <div class="btn-login text-center">
+                <input type="submit" class="btn btn-primary" onclick="loginQuery('{{ csrf_token() }}')" value="Войти">
+            </div>
         </div>
     </div>
 </div>
-
+<!--JQuery JS-->
 <script src="{{ asset('/js/jquery.js') }}"></script>
+<!--Bootstrap JS-->
 <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+<!--Query JS-->
 <script src="{{ asset('/js/query.js') }}"></script>
 </body>
 </html>

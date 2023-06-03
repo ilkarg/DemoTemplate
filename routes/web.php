@@ -32,7 +32,7 @@ Route::middleware('guest')->group(function () {
     })->name('login');
 
     Route::get('/register', function () {
-        return view('registration');
+        return view('register');
     })->name('register');
 
     Route::post('/api/v1/login', [AuthController::class, 'login']);
