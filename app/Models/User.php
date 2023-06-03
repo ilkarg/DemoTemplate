@@ -27,6 +27,7 @@ class User extends Authenticatable
         'patronymic',
         'login',
         'email',
-        'password'
+        'password',
+        'is_admin'
     ];
 }

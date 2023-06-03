@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FoodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,8 @@ Route::middleware('guest')->group(function () {
     Route::post('/api/v1/registration', [AuthController::class, 'registration']);
 });
 
-Route::post('/api/v1/logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::post('/api/v1/logout', [AuthController::class, 'logout']);
+
+    Route::get('/api/v1/getFoods', [FoodController::class, 'getFoods']);
+});

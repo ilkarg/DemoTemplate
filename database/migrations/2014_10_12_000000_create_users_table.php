@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use \Illuminate\Support\Facades\DB;
+use \Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -21,7 +23,20 @@ return new class extends Migration
             $table->string('login');
             $table->string('email');
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
         });
+
+        DB::table('users')->insert([
+            [
+                'name' => 'Илья',
+                'surname' => 'Каргаполов',
+                'patronymic' => 'Александрович',
+                'login' => 'admin',
+                'email' => 'admin@mail.ru',
+                'password' => Hash::make('admin55'),
+                'is_admin' => true
+            ]
+        ]);
     }
 
     /**
