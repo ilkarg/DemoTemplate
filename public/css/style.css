@@ -132,3 +132,7 @@
 .hidden {
     visibility: hidden;
 }
+
+.food-img {
+    margin-left: 10%;
+}

@@ -2,7 +2,7 @@ const isNull = (value) => {
     return value === null || value.trim() === '';
 }
 
-const createFoodCard = (name, image) => {
+const createFoodCard = (id, name, image) => {
     let foodDiv = document.createElement('div');
     foodDiv.classList.add('col-lg-4');
 
@@ -25,7 +25,7 @@ const createFoodCard = (name, image) => {
     foodNameH.innerText = name;
 
     let foodAboutA = document.createElement('a');
-    foodAboutA.href = '#';
+    foodAboutA.href = `/menu/${id}`;
     foodAboutA.classList.add('btn', 'btn-primary', 'food-about-link');
     foodAboutA.innerText = 'Подробнее';
 

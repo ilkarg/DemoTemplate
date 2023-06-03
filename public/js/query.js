@@ -179,7 +179,7 @@ const getFoodsQuery = () => {
         method: 'GET',
         dataType: 'json',
         success: (response) => {
-            response.map((food) => createFoodCard(food.name, food.image));
+            response.map((food) => createFoodCard(food.id, food.name, food.image));
         }
     });
 }

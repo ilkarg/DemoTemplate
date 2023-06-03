@@ -18,4 +18,19 @@ class FoodController extends Controller
             ->get();
         return response()->json($foods);
     }
+
+    public function getFood(string $id) {
+        $food = Food::find($id);
+        if ($food == null) {
+            return response()->json(['response' => 'Food by current id not found']);
+        }
+        return view('food', [
+            'name' => $food->name,
+            'image' => $food->image,
+            'price' => $food->price,
+            'country' => $food->country,
+            'category' => $food->category,
+            'ingredients' => $food->ingredients
+        ]);
+    }
 }

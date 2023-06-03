@@ -18,11 +18,29 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
+            $table->integer('price');
+            $table->string('country');
+            $table->string('category');
+            $table->string('ingredients');
         });
 
         DB::table('foods')->insert([
-            [ 'name' => 'Уха', 'image' => '/assets/uha.jpg' ],
-            [ 'name' => 'Борщ', 'image' => '/assets/borsch.jpg' ]
+            [
+                'name' => 'Уха',
+                'image' => '/assets/uha.jpg' ,
+                'price' => 1000000,
+                'country' => 'Россия',
+                'category' => 'Супы',
+                'ingredients' => 'Суп, рыба'
+            ],
+            [
+                'name' => 'Борщ',
+                'image' => '/assets/borsch.jpg',
+                'price' => 1000,
+                'country' => 'Россия',
+                'category' => 'Супы',
+                'ingredients' => 'Красная вода, капуста, картошка'
+            ]
         ]);
     }
 
