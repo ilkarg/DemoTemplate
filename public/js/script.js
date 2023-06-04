@@ -42,6 +42,8 @@ const createFoodCard = (id, name, image) => {
 const createAdminFoodCard = (id, name, image) => {
     let foodDiv = document.createElement('div');
     foodDiv.classList.add('col-lg-4');
+    foodDiv.id = `food${id}`;
+    foodDiv.setAttribute('name', name);
 
     let cardDiv = document.createElement('div');
     cardDiv.classList.add('card', 'mt-2', 'text-center');
@@ -70,8 +72,15 @@ const createAdminFoodCard = (id, name, image) => {
 
     let foodRemoveA = document.createElement('a');
     foodRemoveA.href = '#';
+    foodRemoveA.setAttribute('data-bs-toggle', 'modal');
+    foodRemoveA.setAttribute('data-bs-target', '#staticBackdrop');
     foodRemoveA.onclick = (event) => {
-        deleteFood(id, event.target.parentNode.parentNode.parentNode);
+        localStorage['elem'] = JSON.stringify({
+            id: event.target.parentNode.parentNode.parentNode.parentNode.id,
+            name: event.target.parentNode.parentNode.parentNode.parentNode.getAttribute('name')
+        });
+        document.querySelector('.modal-body').innerText = `Вы уверены, что хотите удалить блюдо ${JSON.parse(localStorage['elem']).name}?`;
+        //deleteFoodQuery(id, event.target.parentNode.parentNode.parentNode.parentNode);
     }
     foodRemoveA.classList.add('btn', 'btn-primary', 'food-about-link', 'mt-2');
     foodRemoveA.innerText = 'Удалить';
@@ -122,4 +131,8 @@ const createSliderFood = (name, image) => {
 
     $('.carousel-indicators').append(sliderFoodButton);
     $('.carousel-inner').append(carouselItemDiv);
+}
+
+const removeElemData = () => {
+    localStorage.removeItem('elem');
 }

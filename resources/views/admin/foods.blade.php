@@ -53,7 +53,31 @@
     </div>
 </nav>
 <div class="mt-3 container-fluid w-50 mx-auto">
-    <div class="row" id="foods"></div>
+    <div class="row text-center">
+        <input type="button" class="btn btn-primary" value="Добавить блюдо">
+    </div>
+    <div class="row mt-2" id="foods"></div>
+</div>
+
+<!--Modal Confirm Delete Food-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Удаление блюда</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Вы уверены, что хотите удалить блюдо ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="removeElemData()">Отмена</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="
+                    deleteFoodQuery(JSON.parse(localStorage['elem']).id, JSON.parse(localStorage['elem']).name);
+                ">Удалить</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--JQuery JS-->

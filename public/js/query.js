@@ -209,7 +209,9 @@ const getSliderFoodsQuery = () => {
     });
 }
 
-const deleteFood = (id, food) => {
+const deleteFoodQuery = (id, food) => {
+    id = id.replace('food', '');
+
     $.ajax({
         url: `/api/v1/deleteFood/${id}`,
         method: 'DELETE',
@@ -218,7 +220,8 @@ const deleteFood = (id, food) => {
             _token: $('meta[name="_token"]').attr('content')
         },
         success: (response) => {
-            food.remove();
+            document.querySelector(`#${JSON.parse(localStorage['elem']).id}`).remove();
+            removeElemData();
         }
     });
 }
