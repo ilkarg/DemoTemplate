@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\PageController;
+use \App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,11 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/foods', [PageController::class, 'adminFoods']);
     Route::get('/admin/category', [PageController::class, 'adminCategory']);
 
+    Route::post('/api/v1/addFood', [FoodController::class, 'addFood']);
+    Route::post('/api/v1/updateFood', [FoodController::class, 'updateFood']);
     Route::delete('/api/v1/deleteFood/{id}', [FoodController::class, 'deleteFood']);
+
+    Route::post('/api/v1/addCategory', [CategoryController::class, 'addCategory']);
+    Route::get('/api/v1/getCategories', [CategoryController::class, 'getCategories']);
+    Route::delete('/api/v1/deleteCategory/{id}', [CategoryController::class, 'deleteCategory']);
 });

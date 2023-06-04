@@ -220,8 +220,92 @@ const deleteFoodQuery = (id, food) => {
             _token: $('meta[name="_token"]').attr('content')
         },
         success: (response) => {
-            document.querySelector(`#${JSON.parse(localStorage['elem']).id}`).remove();
-            removeElemData();
+            document.querySelector(`#${JSON.parse(localStorage['food']).id}`).remove();
+            removeFoodData();
+        }
+    });
+}
+
+const addFoodQuery = () => {}
+
+const getAdminCategoriesQuery = () => {
+    $.ajax({
+        url: '/api/v1/getCategories',
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            _token: $('meta[name="_token"]').attr('content')
+        },
+        success: (response) => {
+            response.map((category) => createAdminCategoryCard(category.id, category.name));
+        }
+    });
+}
+
+const addAdminCategoryQuery = (csrf_token) => {
+    $('#name').removeClass('invalid-input');
+    $('#name-div').addClass('login-input-border');
+
+    let errorDiv = document.createElement('div');
+    errorDiv.classList.add('alert', 'alert-danger');
+    errorDiv.setAttribute('role', 'alert');
+    let errorsList = document.createElement('ul');
+    errorsList.id = 'errorsList';
+
+    if ($('#loginError>.alert').length) {
+        $('.alert').remove();
+    }
+
+    $.ajax({
+        url: '/api/v1/addCategory',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            _token: csrf_token,
+            name: $('#name').val()
+        },
+        success: (response) => {
+            if (response.response === 'Категория успешно создана') {
+                window.location.reload();
+            }
+        },
+        error: (response) => {
+            response = JSON.parse(response.responseText);
+
+            if (response.errors) {
+                Object.keys(response.errors).map((key) => {
+                    let el = document.createElement('li');
+                    el.innerText = `${key}: ${response.errors[key]}`;
+                    $(`#${key}`).addClass('invalid-input');
+                    $(`#${key}-div`).removeClass('login-input-border');
+                    errorsList.append(el);
+                });
+
+            } else if (response.response) {
+                let el = document.createElement('li');
+                el.innerText = `${response.response}`;
+                errorsList.append(el);
+            }
+
+            errorDiv.append(errorsList);
+            $('#addCategoryError').append(errorDiv);
+        }
+    });
+}
+
+const deleteCategoryQuery = (id, category) => {
+    id = id.replace('category', '');
+
+    $.ajax({
+        url: `/api/v1/deleteCategory/${id}`,
+        method: 'DELETE',
+        dataType: 'json',
+        data: {
+            _token: $('meta[name="_token"]').attr('content')
+        },
+        success: (response) => {
+            document.querySelector(`#${JSON.parse(localStorage['category']).id}`).remove();
+            removeCategoryData();
         }
     });
 }

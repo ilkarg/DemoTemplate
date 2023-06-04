@@ -73,14 +73,13 @@ const createAdminFoodCard = (id, name, image) => {
     let foodRemoveA = document.createElement('a');
     foodRemoveA.href = '#';
     foodRemoveA.setAttribute('data-bs-toggle', 'modal');
-    foodRemoveA.setAttribute('data-bs-target', '#staticBackdrop');
+    foodRemoveA.setAttribute('data-bs-target', '#confirmDeleteFoodModal');
     foodRemoveA.onclick = (event) => {
-        localStorage['elem'] = JSON.stringify({
+        localStorage['food'] = JSON.stringify({
             id: event.target.parentNode.parentNode.parentNode.parentNode.id,
             name: event.target.parentNode.parentNode.parentNode.parentNode.getAttribute('name')
         });
-        document.querySelector('.modal-body').innerText = `Вы уверены, что хотите удалить блюдо ${JSON.parse(localStorage['elem']).name}?`;
-        //deleteFoodQuery(id, event.target.parentNode.parentNode.parentNode.parentNode);
+        document.querySelector('.confirm-delete-food-modal-body').innerText = `Вы уверены, что хотите удалить блюдо ${JSON.parse(localStorage['food']).name}?`;
     }
     foodRemoveA.classList.add('btn', 'btn-primary', 'food-about-link', 'mt-2');
     foodRemoveA.innerText = 'Удалить';
@@ -133,6 +132,54 @@ const createSliderFood = (name, image) => {
     $('.carousel-inner').append(carouselItemDiv);
 }
 
-const removeElemData = () => {
-    localStorage.removeItem('elem');
+const removeFoodData = () => {
+    localStorage.removeItem('food');
+}
+
+const removeCategoryData = () => {
+    localStorage.removeItem('category');
+}
+
+const createAdminCategoryCard = (id, name) => {
+    let categoryDiv = document.createElement('div');
+    categoryDiv.classList.add('col-lg-4');
+    categoryDiv.id = `category${id}`;
+    categoryDiv.setAttribute('name', name);
+
+    let cardDiv = document.createElement('div');
+    cardDiv.classList.add('card', 'mt-2', 'text-center');
+    cardDiv.style.width = '13.5rem';
+
+    let categoryBodyDiv = document.createElement('div');
+    categoryBodyDiv.classList.add('card-body');
+
+    let categoryNameH = document.createElement('h5');
+    categoryNameH.classList.add('card-title');
+    categoryNameH.innerText = name;
+
+    let categoryLinksDiv = document.createElement('div');
+
+    let categoryRemoveA = document.createElement('a');
+    categoryRemoveA.href = '#';
+    categoryRemoveA.setAttribute('data-bs-toggle', 'modal');
+    categoryRemoveA.setAttribute('data-bs-target', '#confirmDeleteCategoryModal');
+    categoryRemoveA.onclick = (event) => {
+        localStorage['category'] = JSON.stringify({
+            id: event.target.parentNode.parentNode.parentNode.parentNode.id,
+            name: event.target.parentNode.parentNode.parentNode.parentNode.getAttribute('name')
+        });
+        document.querySelector('.confirm-delete-category-modal-body').innerText = `Вы уверены, что хотите удалить категорию ${JSON.parse(localStorage['category']).name}?`;
+    }
+    categoryRemoveA.classList.add('btn', 'btn-primary', 'food-about-link', 'mt-2');
+    categoryRemoveA.innerText = 'Удалить';
+
+    categoryLinksDiv.appendChild(categoryRemoveA);
+
+    categoryBodyDiv.appendChild(categoryNameH);
+    categoryBodyDiv.appendChild(categoryLinksDiv);
+
+    cardDiv.appendChild(categoryBodyDiv);
+
+    categoryDiv.appendChild(cardDiv);
+    $('#categories').append(categoryDiv);
 }

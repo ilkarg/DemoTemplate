@@ -55,8 +55,7 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row mt-4" id="loginError">
-    </div>
+    <div class="row mt-4" id="loginError"></div>
     <div class="row">
         <div class="form-login">
             <div id="login-div" class="login-input login-input-border">
