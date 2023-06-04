@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FoodController;
+use \Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,19 @@ Route::middleware('auth')->group(function () {
 Route::get('/api/v1/getFoods', [FoodController::class, 'getFoods']);
 Route::get('/api/v1/getSliderFoods', [FoodController::class, 'getSliderFoods']);
 Route::get('/menu/{id}', [FoodController::class, 'getFood']);
+
+Route::middleware('admin')->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.index');
+    });
+
+    Route::get('/admin/foods', function () {
+        return view('admin.foods');
+    });
+
+    Route::get('/admin/category', function () {
+        return view('admin.category');
+    });
+
+    Route::delete('/api/v1/deleteFood/{id}', [FoodController::class, 'deleteFood']);
+});

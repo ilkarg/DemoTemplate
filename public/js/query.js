@@ -184,6 +184,17 @@ const getFoodsQuery = () => {
     });
 }
 
+const getFoodsAdminQuery = () => {
+    $.ajax({
+        url: '/api/v1/getFoods',
+        method: 'GET',
+        dataType: 'json',
+        success: (response) => {
+            response.map((food) => createAdminFoodCard(food.id, food.name, food.image));
+        }
+    });
+}
+
 const getSliderFoodsQuery = () => {
     $.ajax({
         url: '/api/v1/getSliderFoods',
@@ -194,6 +205,20 @@ const getSliderFoodsQuery = () => {
             if (response.length > 0) {
                 $('.about-slider').removeClass('hidden');
             }
+        }
+    });
+}
+
+const deleteFood = (id, food) => {
+    $.ajax({
+        url: `/api/v1/deleteFood/${id}`,
+        method: 'DELETE',
+        dataType: 'json',
+        data: {
+            _token: $('meta[name="_token"]').attr('content')
+        },
+        success: (response) => {
+            food.remove();
         }
     });
 }

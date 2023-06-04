@@ -39,6 +39,56 @@ const createFoodCard = (id, name, image) => {
     $('#foods').append(foodDiv);
 }
 
+const createAdminFoodCard = (id, name, image) => {
+    let foodDiv = document.createElement('div');
+    foodDiv.classList.add('col-lg-4');
+
+    let cardDiv = document.createElement('div');
+    cardDiv.classList.add('card', 'mt-2', 'text-center');
+    cardDiv.style.width = '13.5rem';
+
+    let foodImg = document.createElement('img');
+    foodImg.classList.add('card-img-top');
+    foodImg.width = 160;
+    foodImg.height = 160;
+    foodImg.alt = name;
+    foodImg.src = image;
+
+    let foodBodyDiv = document.createElement('div');
+    foodBodyDiv.classList.add('card-body');
+
+    let foodNameH = document.createElement('h5');
+    foodNameH.classList.add('card-title');
+    foodNameH.innerText = name;
+
+    let foodLinksDiv = document.createElement('div');
+
+    let foodEditA = document.createElement('a');
+    foodEditA.href = '#';
+    foodEditA.classList.add('btn', 'btn-primary', 'food-about-link');
+    foodEditA.innerText = 'Изменить';
+
+    let foodRemoveA = document.createElement('a');
+    foodRemoveA.href = '#';
+    foodRemoveA.onclick = (event) => {
+        deleteFood(id, event.target.parentNode.parentNode.parentNode);
+    }
+    foodRemoveA.classList.add('btn', 'btn-primary', 'food-about-link', 'mt-2');
+    foodRemoveA.innerText = 'Удалить';
+
+    foodLinksDiv.appendChild(foodEditA);
+    foodLinksDiv.appendChild(foodRemoveA);
+
+    foodBodyDiv.appendChild(foodNameH);
+    foodBodyDiv.appendChild(foodLinksDiv);
+
+    cardDiv.appendChild(foodImg);
+    cardDiv.appendChild(foodBodyDiv);
+
+    foodDiv.appendChild(cardDiv);
+    $('#foods').append(foodDiv);
+}
+
 const createSliderFood = (name, image) => {
     let sliderFoodButton = document.createElement('button');
     sliderFoodButton.type = 'button';

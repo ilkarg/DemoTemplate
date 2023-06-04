@@ -33,4 +33,9 @@ class FoodController extends Controller
             'ingredients' => $food->ingredients
         ]);
     }
+
+    public function deleteFood(string $id) {
+        Food::where('id', $id)->delete();
+        return response()->json(['response' => 'OK']);
+    }
 }
