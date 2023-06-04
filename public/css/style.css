@@ -26,7 +26,7 @@
 	margin-bottom: 10px;
 }
 
-.login-input input {
+.login-input input, textarea, select {
 	color: #000;
 	font-size: 16px;
 	margin-bottom: 10px;
@@ -35,12 +35,19 @@
 	height: 40px;
 	outline: none;
 	padding: 10px;
-	font-size: 16px;
 	transition: .3s ease;
 	border-radius: 8px;
 }
 
-.login-input-border input {
+.login-input textarea {
+    height: 200px;
+}
+
+.login-input select {
+    height: 45px !important;
+}
+
+.login-input-border input, textarea, select {
     border: 1px solid black !important;
 }
 

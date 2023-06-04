@@ -37,8 +37,8 @@ class FoodController extends Controller
     public function addFood(Request $request) {
         $credentials = $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required|regex:/^.+[0-9].+$/i',
             'country' => 'required',
             'category' => 'required',
             'ingredients' => 'required'
@@ -58,15 +58,16 @@ class FoodController extends Controller
 
         return response()->json([
             'response' => 'Блюдо успешно добавлено',
-            'food' => $food
+            'image' => $credentials['image'],
+            'imagePath' => '/assets/'.$imageName
         ]);
     }
 
     public function updateFood(Request $request) {
         $credentials = $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required|regex:/^.+[0-9].+$/i',
             'country' => 'required',
             'category' => 'required',
             'ingredients' => 'required'

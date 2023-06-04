@@ -68,11 +68,36 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body add-food-modal-body">
-                Добавление
+                <div class="row mt-4" id="addFoodError"></div>
+                <div id="name-div" class="login-input login-input-border">
+                    <label class="title-login" for="food-name">Название</label>
+                    <input name="food-name" type="text" id="name" placeholder="Название">
+                </div>
+                <div id="image-div" class="w-50 mx-auto">
+                    <label class="title-login" for="food-image">Изображение</label>
+                    <input name="food-image" type="file" id="image" placeholder="Изображение">
+                </div>
+                <div id="price-div" class="login-input login-input-border">
+                    <label class="title-login" for="food-price">Цена</label>
+                    <input name="food-price" type="number" id="price" placeholder="Цена" value="0">
+                </div>
+                <div id="country-div" class="login-input login-input-border">
+                    <label class="title-login" for="food-country">Страна</label>
+                    <input name="food-country" type="text" id="country" placeholder="Страна">
+                </div>
+                <!-- Переписать категории на select, который заполняется с getCategoriesQuery() -->
+                <div id="category-div" class="login-input login-input-border">
+                    <label class="title-login" for="food-category">Категория</label>
+                    <select name="food-category" id="category"></select>
+                </div>
+                <div id="ingredients-div" class="login-input login-input-border">
+                    <label class="title-login" for="food-ingredients">Состав</label>
+                    <textarea name="food-ingredients" id="ingredients" rows="50"></textarea>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="">Отмена</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="">Добавить</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" onclick="addFoodQuery('{{ csrf_token() }}')">Добавить</button>
             </div>
         </div>
     </div>
@@ -108,7 +133,10 @@
 <!--Query JS-->
 <script src="{{ asset('/js/query.js') }}"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => getFoodsAdminQuery());
+    document.addEventListener('DOMContentLoaded', () => {
+        getFoodsAdminQuery();
+        getCategoriesQuery();
+    });
 </script>
 </body>
 </html>

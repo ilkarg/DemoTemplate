@@ -183,3 +183,12 @@ const createAdminCategoryCard = (id, name) => {
     categoryDiv.appendChild(cardDiv);
     $('#categories').append(categoryDiv);
 }
+
+const addCategoryInInput = (id, name) => {
+    let categoryOption = document.createElement('option');
+    categoryOption.id = `category${id}`;
+    categoryOption.setAttribute('name', name);
+    categoryOption.innerText = name;
+
+    $('#category').append(categoryOption);
+}

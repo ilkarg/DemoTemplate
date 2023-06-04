@@ -15,8 +15,7 @@ class CategoryController extends Controller
         $category = Category::create([ 'name' => $credentials['name'] ]);
 
         return response()->json([
-            'response' => 'Категория успешно создана',
-            'category' => $category
+            'response' => 'Категория успешно создана'
         ]);
     }
 

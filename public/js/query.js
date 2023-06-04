@@ -226,7 +226,74 @@ const deleteFoodQuery = (id, food) => {
     });
 }
 
-const addFoodQuery = () => {}
+const addFoodQuery = (csrf_token) => {
+    $('#name').removeClass('invalid-input');
+    $('#name-div').addClass('login-input-border');
+    $('#price').removeClass('invalid-input');
+    $('#price-div').addClass('login-input-border');
+    $('#country').removeClass('invalid-input');
+    $('#country-div').addClass('login-input-border');
+    $('#category').removeClass('invalid-input');
+    $('#category-div').addClass('login-input-border');
+    $('#ingredients').removeClass('invalid-input');
+    $('#ingredients-div').addClass('login-input-border');
+
+    let errorDiv = document.createElement('div');
+    errorDiv.classList.add('alert', 'alert-danger');
+    errorDiv.setAttribute('role', 'alert');
+    let errorsList = document.createElement('ul');
+    errorsList.id = 'errorsList';
+
+    if ($('#loginError>.alert').length) {
+        $('.alert').remove();
+    }
+
+    let formData = new FormData();
+    formData.append('_token', csrf_token);
+    formData.append('name', $('#name').val());
+    formData.append('image', $('#image')[0].files[0]);
+    formData.append('price', $('#price').val());
+    formData.append('country', $('#country').val());
+    formData.append('category', $('#category').val());
+    formData.append('ingredients', $('#ingredients').val());
+
+    $.ajax({
+        url: '/api/v1/addFood',
+        method: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        data: formData,
+        success: (response) => {
+            if (response.response === 'Блюдо успешно добавлено') {
+                window.location.reload();
+            }
+        },
+        error: (response) => {
+            response = JSON.parse(response.responseText);
+
+            if (response.errors) {
+                Object.keys(response.errors).map((key) => {
+                    if (key !== 'image') {
+                        let el = document.createElement('li');
+                        el.innerText = `${key}: ${response.errors[key]}`;
+                        $(`#${key}`).addClass('invalid-input');
+                        $(`#${key}-div`).removeClass('login-input-border');
+                        errorsList.append(el);
+                    }
+                });
+
+            } else if (response.response) {
+                let el = document.createElement('li');
+                el.innerText = `${response.response}`;
+                errorsList.append(el);
+            }
+
+            errorDiv.append(errorsList);
+            $('#addFoodError').append(errorDiv);
+        }
+    });
+}
 
 const getAdminCategoriesQuery = () => {
     $.ajax({
@@ -238,6 +305,20 @@ const getAdminCategoriesQuery = () => {
         },
         success: (response) => {
             response.map((category) => createAdminCategoryCard(category.id, category.name));
+        }
+    });
+}
+
+const getCategoriesQuery = () => {
+    $.ajax({
+        url: '/api/v1/getCategories',
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            _token: $('meta[name="_token"]').attr('content')
+        },
+        success: (response) => {
+            response.map((category) => addCategoryInInput(category.id, category.name));
         }
     });
 }
