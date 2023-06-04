@@ -43,6 +43,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/category', [PageController::class, 'adminCategory']);
 
     Route::post('/api/v1/addFood', [FoodController::class, 'addFood']);
+    Route::get('/api/v1/getFood/{id}', [FoodController::class, 'getAdminFood']);
     Route::post('/api/v1/updateFood', [FoodController::class, 'updateFood']);
     Route::delete('/api/v1/deleteFood/{id}', [FoodController::class, 'deleteFood']);
 

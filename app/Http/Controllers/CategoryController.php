@@ -12,7 +12,7 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
-        $category = Category::create([ 'name' => $credentials['name'] ]);
+        Category::create([ 'name' => $credentials['name'] ]);
 
         return response()->json([
             'response' => 'Категория успешно создана'

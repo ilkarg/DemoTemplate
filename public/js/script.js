@@ -70,7 +70,12 @@ const createAdminFoodCard = (id, name, image) => {
     let foodEditA = document.createElement('a');
     foodEditA.href = '#';
     foodEditA.classList.add('btn', 'btn-primary', 'food-about-link');
+    foodEditA.setAttribute('data-bs-toggle', 'modal');
+    foodEditA.setAttribute('data-bs-target', '#updateFoodModal');
     foodEditA.innerText = 'Изменить';
+    foodEditA.onclick = (event) => {
+        getAdminFoodInfo(event.target.parentNode.parentNode.parentNode.parentNode.id);
+    }
 
     let foodRemoveA = document.createElement('a');
     foodRemoveA.href = '#';
@@ -192,5 +197,31 @@ const addCategoryInInput = (id, name) => {
     categoryOption.setAttribute('name', name);
     categoryOption.innerText = name;
 
-    $('#category').append(categoryOption);
+    document.querySelectorAll('#category')[0].appendChild(categoryOption);
+    document.querySelectorAll('#category')[1].appendChild(categoryOption);
+}
+
+const writeDataInUpdateFood = (data) => {
+    document.querySelectorAll('#name')[1].value = data.name;
+    document.querySelectorAll('#price')[1].value = data.price;
+    document.querySelectorAll('#country')[1].value = data.country;
+    let options = document.querySelectorAll(".category option");
+
+    let result = Array.prototype.filter.call(options, (option) => {
+        return option.value === data.category;
+    });
+
+    if (result.length > 0) {
+        result[0].setAttribute("selected", true);
+    }
+
+    document.querySelectorAll('#ingredients')[1].value = data.ingredients;
+}
+
+const clearUpdateFields = () => {
+    document.querySelectorAll('#name')[1].value = '';
+    document.querySelectorAll('#price')[1].value = 0;
+    document.querySelectorAll('#country')[1].value = '';
+    document.querySelectorAll('#category')[1].innerHTML = '';
+    document.querySelectorAll('#ingredients')[1].value = '';
 }

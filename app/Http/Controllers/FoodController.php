@@ -47,7 +47,7 @@ class FoodController extends Controller
         $imageName = time().'.'.$credentials['image']->extension();
         $credentials['image']->move(public_path('assets'), $imageName);
 
-        $food = Food::create([
+        Food::create([
             'name' => $credentials['name'],
             'image' => '/assets/'.$imageName,
             'price' => $credentials['price'],
@@ -57,37 +57,64 @@ class FoodController extends Controller
         ]);
 
         return response()->json([
-            'response' => 'Блюдо успешно добавлено',
-            'image' => $credentials['image'],
-            'imagePath' => '/assets/'.$imageName
+            'response' => 'Блюдо успешно добавлено'
         ]);
     }
 
     public function updateFood(Request $request) {
         $credentials = $request->validate([
             'name' => 'required',
-            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price' => 'required|regex:/^.+[0-9].+$/i',
             'country' => 'required',
             'category' => 'required',
             'ingredients' => 'required'
         ]);
 
-        $imageName = time().'.'.$credentials['image']->extension();
-        $credentials['image']->move(public_path('assets'), $imageName);
+        $imageName = '';
+        if ($request->has('image')) {
+            $imageName = time() . '.' . $request->input('image')->extension();
+            $request->input('image')->move(public_path('assets'), $imageName);
+        }
 
-        Food::where('id', $request->input('id'))
-            ->update([
-                'name' => $credentials['name'],
-                'image' => '/assets/'.$imageName,
-                'price' => $credentials['price'],
-                'country' => $credentials['country'],
-                'category' => $credentials['category'],
-                'ingredients' => $credentials['ingredients']
-            ]);
+        if ($imageName != '') {
+            Food::where('id', $request->input('id'))
+                ->update([
+                    'name' => $credentials['name'],
+                    'image' => '/assets/' . $imageName,
+                    'price' => $credentials['price'],
+                    'country' => $credentials['country'],
+                    'category' => $credentials['category'],
+                    'ingredients' => $credentials['ingredients']
+                ]);
+        } else {
+            Food::where('id', $request->input('id'))
+                ->update([
+                    'name' => $credentials['name'],
+                    'price' => $credentials['price'],
+                    'country' => $credentials['country'],
+                    'category' => $credentials['category'],
+                    'ingredients' => $credentials['ingredients']
+                ]);
+        }
 
         return response()->json([
-            'response' => 'Данные успешно обновлены'
+            'response' => 'Блюдо успешно обновлено'
+        ]);
+    }
+
+    public function getAdminFood(string $id) {
+        $food = Food::find($id);
+        if ($food == null) {
+            return response()->json(['response' => 'Food by current id not found']);
+        }
+        return response()->json([
+            'id' => $food->id,
+            'name' => $food->name,
+            'image' => $food->image,
+            'price' => $food->price,
+            'country' => $food->country,
+            'category' => $food->category,
+            'ingredients' => $food->ingredients
         ]);
     }
 

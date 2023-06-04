@@ -309,6 +309,95 @@ const getAdminCategoriesQuery = () => {
     });
 }
 
+const getAdminFoodInfo = (id) => {
+    id = id.replace('food', '');
+
+    $.ajax({
+        url: `/api/v1/getFood/${id}`,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            _token: $('meta[name="_token"]').attr('content')
+        },
+        success: (response) => {
+            writeDataInUpdateFood(response);
+            document.querySelector('#updateFoodModal').setAttribute('food_id', response.id);
+        }
+    });
+}
+
+const updateFoodQuery = (csrf_token) => {
+    document.querySelectorAll('#name')[1].classList.remove('invalid-input');
+    document.querySelectorAll('#name-div')[1].classList.add('login-input-border');
+    document.querySelectorAll('#price')[1].classList.remove('invalid-input');
+    document.querySelectorAll('#price-div')[1].classList.add('login-input-border');
+    document.querySelectorAll('#country')[1].classList.remove('invalid-input');
+    document.querySelectorAll('#country-div')[1].classList.add('login-input-border');
+    document.querySelectorAll('#category')[1].classList.remove('invalid-input');
+    document.querySelectorAll('#category-div')[1].classList.add('login-input-border');
+    document.querySelectorAll('#ingredients')[1].classList.remove('invalid-input');
+    document.querySelectorAll('#ingredients-div')[1].classList.add('login-input-border');
+
+    let errorDiv = document.createElement('div');
+    errorDiv.classList.add('alert', 'alert-danger');
+    errorDiv.setAttribute('role', 'alert');
+    let errorsList = document.createElement('ul');
+    errorsList.id = 'errorsList';
+
+    if ($('#updateFoodError>.alert').length) {
+        $('.alert').remove();
+    }
+
+    let formData = new FormData();
+    formData.append('_token', csrf_token);
+    formData.append('id', document.querySelector('#updateFoodModal').getAttribute('food_id'));
+    formData.append('name', document.querySelectorAll('#name')[1].value);
+    if ($('.image')[0].files[0] != undefined) {
+        formData.append('image', $('.image')[0].files[0]);
+    }
+    formData.append('price', document.querySelectorAll('#price')[1].value);
+    formData.append('country', document.querySelectorAll('#country')[1].value);
+    formData.append('category', document.querySelectorAll('#category')[1].value);
+    formData.append('ingredients', document.querySelectorAll('#ingredients')[1].value);
+
+    $.ajax({
+        url: '/api/v1/updateFood',
+        method: 'POST',
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        data: formData,
+        success: (response) => {
+            if (response.response === 'Блюдо успешно обновлено') {
+                //window.location.reload();
+            }
+        },
+        error: (response) => {
+            response = JSON.parse(response.responseText);
+
+            if (response.errors) {
+                Object.keys(response.errors).map((key) => {
+                    if (key !== 'image') {
+                        let el = document.createElement('li');
+                        el.innerText = `${key}: ${response.errors[key]}`;
+                        $(`#${key}`).addClass('invalid-input');
+                        $(`#${key}-div`).removeClass('login-input-border');
+                        errorsList.append(el);
+                    }
+                });
+
+            } else if (response.response) {
+                let el = document.createElement('li');
+                el.innerText = `${response.response}`;
+                errorsList.append(el);
+            }
+
+            errorDiv.append(errorsList);
+            $('#addFoodError').append(errorDiv);
+        }
+    });
+}
+
 const getCategoriesQuery = () => {
     $.ajax({
         url: '/api/v1/getCategories',
