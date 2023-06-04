@@ -9,6 +9,7 @@ const createFoodCard = (id, name, image) => {
     let cardDiv = document.createElement('div');
     cardDiv.classList.add('card', 'mt-2', 'text-center');
     cardDiv.style.width = '13.5rem';
+    cardDiv.style.height = '22rem';
 
     let foodImg = document.createElement('img');
     foodImg.classList.add('card-img-top');
@@ -48,6 +49,7 @@ const createAdminFoodCard = (id, name, image) => {
     let cardDiv = document.createElement('div');
     cardDiv.classList.add('card', 'mt-2', 'text-center');
     cardDiv.style.width = '13.5rem';
+    cardDiv.style.height = '22rem';
 
     let foodImg = document.createElement('img');
     foodImg.classList.add('card-img-top');

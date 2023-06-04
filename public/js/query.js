@@ -244,7 +244,7 @@ const addFoodQuery = (csrf_token) => {
     let errorsList = document.createElement('ul');
     errorsList.id = 'errorsList';
 
-    if ($('#loginError>.alert').length) {
+    if ($('#addFoodError>.alert').length) {
         $('.alert').remove();
     }
 
