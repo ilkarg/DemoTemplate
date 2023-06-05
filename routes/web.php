@@ -51,3 +51,9 @@ Route::middleware('admin')->group(function () {
     Route::get('/api/v1/getCategories', [CategoryController::class, 'getCategories']);
     Route::delete('/api/v1/deleteCategory/{id}', [CategoryController::class, 'deleteCategory']);
 });
+
+/* Создание контроллера: php artisan make:controller UserController */
+/* Создание миграции: php artisan make:migration create_flights_table */
+/* Создание модели: php artisan make:model Flight */
+/* Создание модели с миграцией: php artisan make:model Flight --migration */
+/* Миграция: php artisan migrate */
