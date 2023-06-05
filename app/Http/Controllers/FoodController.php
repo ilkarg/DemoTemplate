@@ -70,13 +70,13 @@ class FoodController extends Controller
             'ingredients' => 'required'
         ]);
 
-        $imageName = '';
         if ($request->has('image')) {
-            $imageName = time() . '.' . $request->input('image')->extension();
-            $request->input('image')->move(public_path('assets'), $imageName);
+
+            $imageName = time() . '.' . $request->file('image')->extension();
+            $request->file('image')->move(public_path('assets'), $imageName);
         }
 
-        if ($imageName != '') {
+        if (isset($imageName)) {
             Food::where('id', $request->input('id'))
                 ->update([
                     'name' => $credentials['name'],
